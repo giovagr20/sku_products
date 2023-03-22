@@ -1,25 +1,25 @@
-const productModel = require('../persistence/persistence.model')
+const Products = require('../../models/product.model');
+const uuid = require('uuid');
 
-const createProduct = async (productname, image, price, shortDescription, longDescription, quantity) => {
-
-    const modelService = {
-        name: productname,
+const createProduct = async (name, image, price, shortDescription, longDescription, quantity) => {
+    const sku = uuid.v4();
+    return await Products.create({
+        sku: sku,
+        name: name,
         image: image,
         price: price,
         shortDescription: shortDescription,
         longDescription: longDescription,
         quantity: quantity
-    }
-
-    return await productModel.createProduct(modelService);
+    });
 }
 
 const findProductById = async (id) => {
-    return await productModel.findProductById(id);
+    return await Products.findByPk(id);
 }
 
 const findAll = async () => {
-    return await productModel.findAll();
+    return await Products.findAll();
 }
 
 module.exports = {

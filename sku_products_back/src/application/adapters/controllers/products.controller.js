@@ -15,7 +15,7 @@ routes.post('/products', async (req, res) => {
 
     console.log(req.body);
     const {
-        productname,
+        name,
         image,
         price,
         shortDescription,
@@ -24,7 +24,7 @@ routes.post('/products', async (req, res) => {
     } = req.body;
 
     const newProduct = await productService.createProduct(
-        productname,
+        name,
         image,
         price,
         shortDescription,
@@ -32,7 +32,7 @@ routes.post('/products', async (req, res) => {
         quantity
     );
 
-    res.send(newProduct);
+    res.json(newProduct);
 })
 
 routes.get("/products", async (req, res) => {
