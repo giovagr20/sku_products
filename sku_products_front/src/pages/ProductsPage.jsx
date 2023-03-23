@@ -31,12 +31,10 @@ export const Product = () => {
     <>
       <main>
         {products.length > 0 ? (
-          <section className="container___list">
+          <section className="container">
             <ul className="list">
               {products.map((product) => (
-                <li
-                  key={product.id}
-                >
+                <li key={product.id}>
                   <Link to={`/product/${product.id}`}></Link>
                 </li>
               ))}
@@ -44,7 +42,7 @@ export const Product = () => {
           </section>
         ) : (
           <section className="container">
-              There's no data
+            <div>There's no data</div>
           </section>
         )}
       </main>
