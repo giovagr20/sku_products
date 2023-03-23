@@ -1,32 +1,44 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { UrlContext } from "../components/url.context";
+import { useEffect, useState } from "react";
+import {useParams, Link} from 'react-router-dom'
+import { URL_API } from "../components/url.context";
+import "../styles/products.styles.css";
 
-export const ProductDetail = ({
-  id,
-  sku,
-  name,
-  price,
-  image,
-  longDescription,
-}) => {
-  const { url } = useContext(UrlContext);
+
+export const ProductDetail = () => {
   const [detail, setDetail] = useState("");
+  const { id } = useParams();
 
   useEffect(() => {
     callApi();
-  });
+  }, []);
 
   const callApi = () => {
     axios
-      .get(`${url}/products/${id}`)
-      .then((res) => setDetail(res))
+      .get(`${URL_API}/product/${id}`)
+      .then((res) => setDetail(res.data))
       .catch((err) => console.log(err));
   };
 
   return(
     <>
-    
+      <div className="card">
+        <Link to={`/product`} className="btn btn-primary">Go back </Link>
+
+        <br />
+        <picture className="card___image">
+          <img src={detail.image} alt={detail.name} />
+        </picture>
+        <h3 className="card__title ">{detail.name}</h3>
+        <p className="card__text">
+          Description: <span>{detail.shortDescription}</span>
+        </p>
+        <p className="card__text">
+          <code>
+          Price: $<span>{detail.price}</span>
+          </code>
+        </p>
+      </div>
     </>
   )
 };

@@ -8,9 +8,9 @@ const sequelize = new Sequelize(
 
 const Products = sequelize.define("Products", {
   id: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     primaryKey: true,
-    defaultValue: Sequelize.UUIDV4
+    autoIncrement: true
   },
   sku: {
     type: DataTypes.STRING,
@@ -37,9 +37,20 @@ const Products = sequelize.define("Products", {
     allowNull: false,
   },
   quantity: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.BIGINT,
     allowNull: false,
   },
+}, {
+  tableName: 'Products',
+  freezeTableName: true
 });
+
+sequelize.sync()
+  .then(() => {
+    console.log('Table created successfully.');
+  })
+  .catch((error) => {
+    console.log('Error creating table:', error);
+  });
 
 module.exports = Products;

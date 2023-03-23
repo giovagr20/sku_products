@@ -43,5 +43,15 @@ routes.get("/products", async (req, res) => {
     res.send(products);
 })
 
+routes.get("/product/:id", async(req, res) => {
+    const id = req.params.id
+
+    if (id === null) res.send({message: "Error, please send id"})
+
+    const product = await productService.findProductById(id);
+
+    res.send(product);
+})
+
 
 module.exports = routes;

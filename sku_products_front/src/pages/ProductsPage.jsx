@@ -1,29 +1,25 @@
 import { useEffect, useState } from "react";
 import { URL_API } from "../components/url.context";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/products.styles.css";
-import { ProductDetail } from "./ProductDetailPage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export const Product = () => {
-  const [data, setData] = useState([]);
-  const [isSelected, setSelected] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     callApi();
+    console.log(products);
   }, []);
 
   const callApi = () => {
     axios
       .get(`${URL_API}/products`)
-      .then((res) => setData(res))
+      .then((res) => setProducts(res.data))
       .catch((err) => console.log(err));
   };
 
-  const handleSelectedCard = (product) => {
-    setSelectedProduct(product);
-    setSelected(true);
-  };
   /**
    *   sku,
   name,
@@ -34,32 +30,28 @@ export const Product = () => {
   return (
     <>
       <main>
-        {data.length > 0 ? (
+        {products.length > 0 ? (
           <section className="container___list">
             <ul className="list">
-              {data.map((product) => (
+              {products.map((product) => (
                 <li
                   key={product.id}
-                  onClick={() => handleSelectedCard(product)}
                 >
-                  <ProductDetail
-                    id={product.id}
-                    sku={product.sku}
-                    name={product.name}
-                    price={product.price}
-                    image={product.image}
-                    longDescription={product.longDescription}
-                  />
+                  <Link to={`/product/${product.id}`}></Link>
                 </li>
               ))}
             </ul>
           </section>
         ) : (
-          <section className="container__card">
-            <div>There's no product to show</div>
+          <section className="container">
+              There's no data
           </section>
         )}
       </main>
     </>
   );
 };
+
+/***?
+ *
+ */
