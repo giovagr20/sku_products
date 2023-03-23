@@ -1,4 +1,4 @@
-import {createContext} from "react";
+import {createContext, useState} from "react";
 
 const URL = 'http://localhost:3000/api';
 
@@ -16,3 +16,5 @@ export const UrlProvider = ({ children }) => {
       </UrlContext.Provider>
     );
 }
+
+export const URL_API = 'http://localhost:3000/api'

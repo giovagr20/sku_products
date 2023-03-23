@@ -1,7 +1,8 @@
 import { ProductDetail } from "./pages/ProductDetailPage";
 import { Product } from "./pages/ProductsPage";
 import { ErrorPage } from "./pages/error/ErrorPage";
-import { NewProduct } from "./pages/NewProductPage";
+import { NewProduct } from "./pages/NewProductPage"; 
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 
 function App() {
@@ -15,7 +16,6 @@ function App() {
           <Route path="/new-product" element={<NewProduct />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </>
   );

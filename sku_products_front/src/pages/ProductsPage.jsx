@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { UrlContext } from "../components/url.context";
+import { useEffect, useState } from "react";
+import { URL_API } from "../components/url.context";
 import axios from "axios";
 import "../styles/products.styles.css";
 import { ProductDetail } from "./ProductDetailPage";
@@ -9,15 +9,13 @@ export const Product = () => {
   const [isSelected, setSelected] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const { url } = useContext(UrlContext);
-
   useEffect(() => {
-    this.callApi();
+    callApi();
   }, []);
 
   const callApi = () => {
     axios
-      .get(`${url}/products`)
+      .get(`${URL_API}/products`)
       .then((res) => setData(res))
       .catch((err) => console.log(err));
   };
