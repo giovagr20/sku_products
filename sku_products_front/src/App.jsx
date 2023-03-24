@@ -1,8 +1,9 @@
-import { ProductDetail } from "./pages/ProductDetailPage";
-import { Product } from "./pages/ProductsPage";
 import { ErrorPage } from "./pages/error/ErrorPage";
-import { NewProduct } from "./pages/NewProductPage"; 
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { HomePage } from "./pages/home/HomePage";
+import { Product } from "./pages/products/ProductsPage";
+import { ProductDetail } from "./pages/products/ProductDetailPage";
+import { NewProduct } from "./pages/products/NewProductPage";
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Product/>} />
+          <Route path="/" element={<HomePage/>} />
           <Route path="/product" element={<Product />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/new-product" element={<NewProduct />} />

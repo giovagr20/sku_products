@@ -26,10 +26,10 @@ routes.post('/products', async (req, res) => {
     const newProduct = await productService.createProduct(
         name,
         image,
-        price,
+        parseInt(price),
         shortDescription,
         longDescription,
-        quantity
+        parseInt(quantity)
     );
 
     res.json(newProduct);

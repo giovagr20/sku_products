@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {useParams, Link} from 'react-router-dom'
-import { URL_API } from "../components/url.context";
-import "../styles/products.styles.css";
+import { URL_API } from "../../components/url.context";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../styles/products.styles.css";
 
 
 export const ProductDetail = () => {
-  const [detail, setDetail] = useState("");
+  const [detail, setDetail] = useState({});
   const { id } = useParams();
 
   useEffect(() => {
@@ -30,10 +31,10 @@ export const ProductDetail = () => {
           <img src={detail.image} alt={detail.name} />
         </picture>
         <h3 className="card__title ">{detail.name}</h3>
-        <p className="card__text">
-          Description: <span>{detail.shortDescription}</span>
+        <p className="card__text text-center">
+          Description: <span>{detail.longDescription}</span>
         </p>
-        <p className="card__text">
+        <p className="card__text text-center">
           <code>
           Price: $<span>{detail.price}</span>
           </code>

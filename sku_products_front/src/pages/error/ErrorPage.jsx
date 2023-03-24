@@ -3,9 +3,13 @@ import { Error } from "../../components/error/error.message";
 
 export const ErrorPage = () => {
   const [error, setError] = useState(Error);
+
+  const logError = () => {
+    console.log(setError());
+  };
   return (
     <>
-      <div> {error} </div>
+      <div onClick={() => logError()}> {error} </div>
     </>
   );
 };
